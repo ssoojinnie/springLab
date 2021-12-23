@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %p %c[%method:%line] - %msg%n"/>
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${LOG_PATTERN}</Pattern>
+        </layout>
+    </appender>
+
+    <logger name="org.springframework.boot">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.springframework.boot.devtools.restart">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.springframework">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="springfox">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.hibernate">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.apache">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.apache.http.impl.conn">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="log4jdbc">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.mybatis">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="com.zaxxer">
+        <level value="ERROR"/>
+    </logger>
+    <!--Query logger-->
+    <logger name="jdbc" level="ERROR"/>
+    <logger name="jdbc.connection" level="ERROR"/>
+    <!--sql문만을 로그로 남기고 preparedstatement일 경우 관련 argument 값으로 대체된 sql문이 보여진다-->
+    <logger name="jdbc.sqlonly" level="ERROR"/>
+    <!--resultset을 제외한 모든 jdbc호출정보를 로그로 남긴다. 특히 JDBC문제를 추적할떄 -->
+    <logger name="jdbc.audit" level="OFF"/>
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
