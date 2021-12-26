@@ -14,4 +14,10 @@ public class ExampleTaglibController {
         model.addAttribute("boardTypes", BoardType.values()); //BoardType이라는 Enum의 값들을 배열 형태로 리턴
         model.addAttribute("parameter", parameter);
     }
+
+    @RequestMapping("/search2")
+    public void search2(BoardSearchParameter parameter, Model model){
+        model.addAttribute("boardTypes", BoardType.values()); //BoardType이라는 Enum의 값들을 배열 형태로 리턴
+        model.addAttribute("parameter", parameter);
+    }
 }
