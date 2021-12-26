@@ -7,6 +7,7 @@
     <display-name>JSTL functions</display-name>
     <tlib-version>1.1</tlib-version>
     <short-name>utils</short-name>
+    <uri>/WEB-INF/tags/bootstrap-checkbox.tag</uri>
 
     <function>
         <name>isSelected</name>

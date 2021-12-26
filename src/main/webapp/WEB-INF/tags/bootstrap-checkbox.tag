@@ -9,11 +9,11 @@
 <c:forEach var="boardType" items="${items}" varStatus="status">
     <div class="form-check form-check-inline">
     <input class="form-check-input" name="boardTypes" type="checkbox"
-        value="${boardType.code()}"
-        ${utils.isSelected(values, boardType) ? 'checked="checked"' : ''}
+        value="${boardType.code()}" ${utils.isSelected(values, boardType) ? ' checked="checked"' : ''}
         id="board-type${status.count}">
         <label class="form-check-label" for="board-type${status.count}">
             ${boardType.label()}
+            "@@@@@"+${boardType.code()}
         </label>
     </div>
 </c:forEach>

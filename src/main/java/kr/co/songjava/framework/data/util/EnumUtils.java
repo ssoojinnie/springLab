@@ -8,12 +8,14 @@ public class EnumUtils {
 
 
 
+
     /*
     @param values 파라미터로 넘어온 선택 값들
     @param codeEnum 현재 출력하고 있는 Code
      */
     public static boolean isSelected(BaseCodeLabelEnum[] values, BaseCodeLabelEnum codeEnum){
 
+    System.out.print("!!!!!!!!!!!!!!"+values[0]);
         if(ObjectUtils.isEmpty(values)){
             return false;
         }

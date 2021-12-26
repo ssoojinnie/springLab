@@ -15,6 +15,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
@@ -26,7 +28,7 @@ import java.util.List;
 * 게시판 서비스
 * @author PSJ
  */
-@RestController
+@Controller
 @RequestMapping("/board")
 @Api(tags="게시판 API")
 public class BoardController {
@@ -41,6 +43,7 @@ public class BoardController {
      * @author PSJ
      */
     @GetMapping
+    @ResponseBody
     @ApiOperation(value="목록 조회", notes = "목록 정보 조회 가능")
     public BaseResponse<List<Board>> getList(
             @ApiParam BoardSearchParameter parameter,
@@ -50,6 +53,16 @@ public class BoardController {
         PageRequestParameter<BoardSearchParameter> pageRequestParameter= new PageRequestParameter<BoardSearchParameter>(pageRequest, parameter);
 
         return new BaseResponse<List<Board>>(boardService.getList(pageRequestParameter));
+    }
+
+    @GetMapping("/form")
+    @RequestConfig(loginCheck = false)
+    public void form(BoardParameter parameter, Model model){
+        if(parameter.getBoardSeq() > 0){
+            Board board = boardService.get(parameter.getBoardSeq());
+            model.addAttribute("board", board);
+        }
+        model.addAttribute("parameter", parameter);
     }
 
     /*
