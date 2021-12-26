@@ -21,6 +21,9 @@
                 </div>
                 </label>
             </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary">검색하기</button>
+            </div>
         </form>
     </div>
 </body>

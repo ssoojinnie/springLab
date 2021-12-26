@@ -13,7 +13,7 @@
         <h2> 게시물 목록 </h2>
         <form action="" method="get">
             <div class="mb-3 row">
-                <label for="exampleFormControlInput1" class="col-sm-2 col-form-label">
+                <label for="exampleFormControlInput1" class="col-sm-2 col-form-label"/>
                 <div class="col-sm-10">
                     <c:forEach var="boardType" items="${boardTypes}">
                     <div class="form-check form-check-inline">
@@ -24,9 +24,12 @@
                     </div>
                     </c:forEach>
                 </div>
-                </label>
+            </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary">검색하기</button>
             </div>
         </form>
     </div>
 </body>
 </html>
+
