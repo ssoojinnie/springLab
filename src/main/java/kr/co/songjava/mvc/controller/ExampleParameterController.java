@@ -20,9 +20,10 @@ public class ExampleParameterController {
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @GetMapping("/example1")
-    public void example1(@RequestParam String id, @RequestParam String code, Model model){
+    public String example1(@RequestParam String id, @RequestParam String code, Model model){
         model.addAttribute("id", id);
         model.addAttribute("code", code);
+        return "/example/parameter/example1";
     }
 
     /*
