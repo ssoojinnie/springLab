@@ -9,6 +9,7 @@ public class Board {
     private int boardSeq;
     private String title;
     private String contents;
+    private int viewCount;
     private Date regDate;
     private BoardType boardType;
     private boolean delYn;

@@ -13,7 +13,6 @@
         id="board-type${status.count}">
         <label class="form-check-label" for="board-type${status.count}">
             ${boardType.label()}
-            "@@@@@"+${boardType.code()}
         </label>
     </div>
 </c:forEach>

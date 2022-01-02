@@ -34,7 +34,7 @@
             </if>
         </where>
         ORDER BY B.REG_DATE DESC
-        LIMIT #{pageRequest.limit}, #{pageRequest.offset}
+        <!--LIMIT #{pageRequest.limit}, #{pageRequest.offset} -->
 
     </select>
 

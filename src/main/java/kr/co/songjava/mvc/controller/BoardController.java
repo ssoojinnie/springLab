@@ -42,17 +42,20 @@ public class BoardController {
      * 목록리턴
      * @author PSJ
      */
-    @GetMapping
-    @ResponseBody
-    @ApiOperation(value="목록 조회", notes = "목록 정보 조회 가능")
-    public BaseResponse<List<Board>> getList(
-            @ApiParam BoardSearchParameter parameter,
-            @ApiParam MySQLPageRequest pageRequest){//페이지 요청 과 검색파라미터 분리
+    @GetMapping("/list")
+    //@ResponseBody
+    //@ApiOperation(value="목록 조회", notes = "목록 정보 조회 가능")
+    public void list(BoardSearchParameter parameter, MySQLPageRequest pageRequest, Model model)
+            //@ApiParam BoardSearchParameter parameter,
+            //@ApiParam MySQLPageRequest pageRequest)
+    {//페이지 요청 과 검색파라미터 분리
 
         logger.info("pageRequest:{}", pageRequest);
         PageRequestParameter<BoardSearchParameter> pageRequestParameter= new PageRequestParameter<BoardSearchParameter>(pageRequest, parameter);
 
-        return new BaseResponse<List<Board>>(boardService.getList(pageRequestParameter));
+        List<Board> list = boardService.getList(pageRequestParameter);
+        model.addAttribute("boardList", list);
+        //return new BaseResponse<List<Board>>(boardService.getList(pageRequestParameter));
     }
 
     @GetMapping("/form")
