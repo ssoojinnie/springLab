@@ -73,16 +73,20 @@ public class BoardController {
      * @author PSJ
      */
     @GetMapping("/{boardSeq}")
-    @ApiOperation(value="상세조회", notes="게시물번호에 해당하는 상세정보 조회 가능")
+    /*@ApiOperation(value="상세조회", notes="게시물번호에 해당하는 상세정보 조회 가능")
     @ApiImplicitParams({
             @ApiImplicitParam(name="boardSeq", value = "게시물 번호", example = "1")
     })
-    public BaseResponse<Board> get(@PathVariable int boardSeq){
+
+     */
+    public String detail(@PathVariable int boardSeq, Model model){
         Board board = boardService.get(boardSeq);
         if(board==null){
             throw new BaseException(BaseResponseCode.DATA_IS_NULL, new String[] {"게시물"});
         }
-        return new BaseResponse<Board>(boardService.get(boardSeq));
+        model.addAttribute("board", board);
+        return "/board/detail";
+                //new BaseResponse<Board>(boardService.get(boardSeq));
     }
 
     /*

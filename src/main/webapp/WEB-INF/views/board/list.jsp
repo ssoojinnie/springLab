@@ -37,7 +37,7 @@ pageEncoding="UTF-8"%>
               <c:forEach var="board" items="${boardList}" varStatus="status">
                 <tr>
                   <th scope="row">${status.count}</th>
-                  <td>${board.title}</td>
+                  <td><a href="/board/${board.boardSeq}">${board.title}</a></td>
                   <td>${board.viewCount}</td>
                   <td><fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd HH:mm"/></td>
                 </tr>
