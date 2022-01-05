@@ -25,10 +25,10 @@ pageEncoding="UTF-8"%>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="/board/list/notice"><spring:message code="menu.notice"/></a></li>
-            <li class="nav-item"><a class="nav-link" href="/board/list/faq"><spring:message code="menu.faq"/></a></li>
-            <li class="nav-item"><a class="nav-link" href="/board/list/inquiry"><spring:message code="menu.inquiry"/></a></li>
-            <li class="nav-item"><a class="nav-link" href="/board/list/community"><spring:message code="menu.community"/></a></li>
+            <li class="nav-item"><a class="nav-link" href="/notice"><spring:message code="menu.notice"/></a></li>
+            <li class="nav-item"><a class="nav-link" href="/faq"><spring:message code="menu.faq"/></a></li>
+            <li class="nav-item"><a class="nav-link" href="/inquiry"><spring:message code="menu.inquiry"/></a></li>
+            <li class="nav-item"><a class="nav-link" href="/community"><spring:message code="menu.community"/></a></li>
           </ul>
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
