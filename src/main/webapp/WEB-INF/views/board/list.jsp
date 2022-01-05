@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
     <div class="container">
-        <form id="form" method="get" action="/list">
+        <form id="form" method="get" action="/board/list">
             <div class="row mb-3">
                 <label for="keyword" class="col-sm-2 col-form-label"><spring:message code="search.keyword"/></label>
                 <div class="col-sm-10">
@@ -49,8 +49,35 @@ pageEncoding="UTF-8"%>
                 </c:if>
               </tbody>
             </table>
-
-
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+                <a href="/board/form" class="btn btn-primary" type="button"><spring:message code="button.form"/></a>
+            </div>
     </div>
+     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+     <script>
+        $(function(){
+
+            var $form = $('#form'); //$에 #을 붙이면 화면 컴포넌트의 id를 의미함
+            $form.bind('submit', function(){
+                $.ajax({
+                    url: '/board/list',
+                    type: 'get',
+                    data: $form.serialize(),//자동으로 key value 값으로 변환 //JSON.stringify(json),
+                    //contentType: 'application/json',
+                    dataType: 'json',
+                    success: function(data){
+                        if(data.code == 'SUCCESS'){
+
+                        } else{
+                            alert(data.message);
+                        }
+                        console.log(data);
+                    }
+                });
+                return false;
+            });
+        });
+     </script>
+
 </body>
 </html>
