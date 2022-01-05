@@ -8,6 +8,8 @@ import kr.co.songjava.framework.data.domain.MySQLPageRequest;
 import kr.co.songjava.framework.data.domain.PageRequestParameter;
 import kr.co.songjava.framework.data.web.bind.annotation.RequestConfig;
 import kr.co.songjava.mvc.domain.Board;
+import kr.co.songjava.mvc.domain.BoardType;
+import kr.co.songjava.mvc.domain.MenuType;
 import kr.co.songjava.mvc.parameter.BoardParameter;
 import kr.co.songjava.mvc.parameter.BoardSearchParameter;
 import kr.co.songjava.mvc.service.BoardService;
@@ -20,8 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 /*
@@ -29,7 +30,7 @@ import java.util.List;
 * @author PSJ
  */
 @Controller
-@RequestMapping("/board")
+//@RequestMapping("/board")
 @Api(tags="게시판 API")
 public class BoardController {
 
@@ -42,10 +43,12 @@ public class BoardController {
      * 목록리턴
      * @author PSJ
      */
-    @GetMapping("/list")
+    @GetMapping("{menuType}")
+    //@GetMapping("/list/{menuType}")
+    //@GetMapping("/list")
     //@ResponseBody
     //@ApiOperation(value="목록 조회", notes = "목록 정보 조회 가능")
-    public void list(BoardSearchParameter parameter, MySQLPageRequest pageRequest, Model model)
+    public String list(@PathVariable MenuType menuType, BoardSearchParameter parameter, MySQLPageRequest pageRequest, Model model)
             //@ApiParam BoardSearchParameter parameter,
             //@ApiParam MySQLPageRequest pageRequest)
     {//페이지 요청 과 검색파라미터 분리
@@ -53,9 +56,14 @@ public class BoardController {
         logger.info("pageRequest:{}", pageRequest);
         PageRequestParameter<BoardSearchParameter> pageRequestParameter= new PageRequestParameter<BoardSearchParameter>(pageRequest, parameter);
 
+        logger.info("menyType : {}", menuType);
+
+        parameter.setBoardTypes(menuType.getArray());
+        logger.info("parameter : {}", parameter);
         List<Board> boardList = boardService.getList(pageRequestParameter);
         model.addAttribute("boardList", boardList);
         //return new BaseResponse<List<Board>>(boardService.getList(pageRequestParameter));
+        return "/board/list";
     }
 
     /*
@@ -82,7 +90,7 @@ public class BoardController {
     })
 
      */
-    @GetMapping("/{boardSeq}")
+    @GetMapping("/detail/{boardSeq}")
     public String detail(@PathVariable int boardSeq, Model model){
         Board board = boardService.get(boardSeq);
         if(board==null){

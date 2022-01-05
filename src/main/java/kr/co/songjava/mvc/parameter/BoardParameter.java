@@ -1,5 +1,6 @@
 package kr.co.songjava.mvc.parameter;
 
+import kr.co.songjava.mvc.domain.BoardType;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ public class BoardParameter {
     private String title;
     private String contents;
     private boolean delYn;
+    private BoardType boardType;
 
     public BoardParameter(){}
 
