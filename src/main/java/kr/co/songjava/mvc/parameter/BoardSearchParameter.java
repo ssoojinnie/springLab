@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 public class BoardSearchParameter {
     private String keyword;
+    private BoardType boardType;
     private BoardType[] boardTypes;
     public BoardSearchParameter(){}
 

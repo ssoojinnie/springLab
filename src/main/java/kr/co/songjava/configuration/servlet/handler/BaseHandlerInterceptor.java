@@ -4,6 +4,7 @@ import kr.co.songjava.configuration.exception.BaseException;
 import kr.co.songjava.configuration.http.BaseResponse;
 import kr.co.songjava.configuration.http.BaseResponseCode;
 import kr.co.songjava.framework.data.web.bind.annotation.RequestConfig;
+import kr.co.songjava.mvc.domain.MenuType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.method.HandlerMethod;
@@ -37,6 +38,12 @@ public class BaseHandlerInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView){
+        if(handler instanceof HandlerMethod){
+            if(modelAndView != null) {
+                modelAndView.addObject("menuTypes", MenuType.values());
+            }
+        } //공통메뉴 정보를 modelandview 에 기억하게 해서 jsp 에서 사용하기 
+        // jsp 에서 반복문으로 만든 메뉴 -> c:forEach 로 변경
         logger.info("postHandle requestURI :{}", request.getRequestURI());
 
     }

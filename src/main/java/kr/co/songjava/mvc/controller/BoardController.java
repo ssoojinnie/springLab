@@ -58,7 +58,8 @@ public class BoardController {
 
         logger.info("menyType : {}", menuType);
 
-        parameter.setBoardTypes(menuType.getArray());
+        //parameter.setBoardTypes(menuType.getArray());
+        parameter.setBoardType(menuType.boardType());
         logger.info("parameter : {}", parameter);
         List<Board> boardList = boardService.getList(pageRequestParameter);
         model.addAttribute("boardList", boardList);
@@ -72,8 +73,9 @@ public class BoardController {
      */
     @GetMapping("/{menuType}/form")
     @RequestConfig(loginCheck = false)
-    public void form(@PathVariable MenuType menuType, BoardParameter parameter, Model model){
+    public String form(@PathVariable MenuType menuType, BoardParameter parameter, Model model){
         model.addAttribute("parameter", parameter);
+        return "/board/form";
     }
 
     /*
@@ -138,6 +140,7 @@ public class BoardController {
         if(StringUtils.isEmpty(parameter.getContents())){
             throw new BaseException(BaseResponseCode.VALIDATE_REQUIRED, new String[]{"Contents", "내용"});
         }
+        parameter.setBoardType(menuType.boardType());
         boardService.save(parameter);
         return new BaseResponse<Integer>(parameter.getBoardSeq());
        // return "/board/"+parameter.ge
