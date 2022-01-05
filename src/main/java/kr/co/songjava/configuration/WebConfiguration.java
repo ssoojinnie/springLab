@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import kr.co.songjava.configuration.servlet.handler.BaseHandlerInterceptor;
 import kr.co.songjava.framework.data.web.MySQLPageRequestHandleMethodArgumentResolver;
 import kr.co.songjava.mvc.domain.BaseCodeLabelEnum;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -60,6 +61,13 @@ public class WebConfiguration implements WebMvcConfigurer {
         return new GlobalConfig();
     }
 
+    @Bean
+    public FilterRegistrationBean<SitemeshConfiguration> sitemeshBean(){
+        FilterRegistrationBean<SitemeshConfiguration> filter = new FilterRegistrationBean<SitemeshConfiguration>();
+        filter.setFilter(new SitemeshConfiguration());
+        return filter;
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(baseHandlerInterceptor());
@@ -83,6 +91,9 @@ public class WebConfiguration implements WebMvcConfigurer {
             registry.addResourceHandler(resourcePattern).addResourceLocations("file:"+ config().getUploadFilePath());
         }
     }
+
+
+
 
 
 }

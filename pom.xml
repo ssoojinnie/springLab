@@ -109,6 +109,15 @@
 			<version>0.4.15</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.sitemesh/sitemesh -->
+		<!-- 공통 레이아웃 설정 -->
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

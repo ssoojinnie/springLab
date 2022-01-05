@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
     <div class="container">
-        <form id="form" method="post" action="/board/save">
+        <form id="form" method="post" action="/${menuType}/save">
             <input type="hidden"  name="boardSeq" value="${board == null ? 0 : board.boardSeq}"/>
             <input type="hidden"  name="boardType" value="COMMUNITY"/>
             <div class="row mb-3">
@@ -37,7 +37,7 @@ pageEncoding="UTF-8"%>
         var $form = $('#form'); //$에 #을 붙이면 화면 컴포넌트의 id를 의미함
         $form.bind('submit', function(){
             $.ajax({
-                url: '/board/save',
+                url: '/${menuType}/save',
                 type: 'post',
                 data: $form.serialize(),//자동으로 key value 값으로 변환 //JSON.stringify(json),
                 //contentType: 'application/json',
