@@ -5,6 +5,7 @@ public enum BoardType implements BaseCodeLabelEnum{
     FAQ("자주묻는질문"),
     INQUIRY("1:1 문의"),
     TEST("테스트용 타입"),
+    COMMUNITY("커뮤니티"),
     ;
 
     private String code;
