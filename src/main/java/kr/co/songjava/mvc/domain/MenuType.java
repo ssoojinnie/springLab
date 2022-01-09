@@ -9,6 +9,7 @@ public enum MenuType {
     faq(BoardType.FAQ, "menu.faq", "/faq"),
     inquiry(BoardType.INQUIRY, "menu.inquiry", "/inquiry"),
     community(BoardType.COMMUNITY, "menu.community", "/community"),
+
     ;
     private BoardType boardType;
     private String menuCode;

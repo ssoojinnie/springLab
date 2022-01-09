@@ -117,6 +117,20 @@
 			<version>3.0.1</version>
 		</dependency>
 
+		<!-- JPA 설정-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+
+
+		<!--<dependency> &lt;!&ndash; JPA 사용을 위한 Dependency &ndash;&gt;
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.4.10.Final</version>
+		</dependency>-->
+
 
 	</dependencies>
 
