@@ -1,6 +1,6 @@
 package kr.co.songjava.mvc.service;
 
-import kr.co.songjava.mvc.domain.Member;
+import kr.co.songjava.mvc.repository.Member;
 import kr.co.songjava.mvc.repository.MemberMappingName;
 import kr.co.songjava.mvc.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,5 @@
 package kr.co.songjava.mvc.repository;
 
-import kr.co.songjava.mvc.domain.Member;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

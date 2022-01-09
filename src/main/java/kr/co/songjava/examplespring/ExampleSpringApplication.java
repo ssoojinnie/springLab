@@ -10,7 +10,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @ComponentScan(basePackages = "kr.co.songjava")
 @EnableScheduling
-@EntityScan("kr.co.songjava.mvc.domain*")
 public class ExampleSpringApplication {
 
 	public static void main(String[] args) {
