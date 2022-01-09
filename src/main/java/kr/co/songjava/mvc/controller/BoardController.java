@@ -123,7 +123,7 @@ public class BoardController {
      */
     //@PutMapping("/save")
     @PostMapping("/{menuType}/save")
-    @ResponseBody
+    //@ResponseBody
     @RequestConfig(loginCheck = false)//로그인체크하려면 true
     @ApiOperation(value="등록/수정 처리", notes="신규 게시물 저장 및 기존 게시물 업데이트 가능")
     @ApiImplicitParams({
@@ -131,7 +131,8 @@ public class BoardController {
             @ApiImplicitParam(name="title", value = "제목", example = "spring"),
             @ApiImplicitParam(name="contents", value = "내용", example = "spring 강좌")
     })
-    public BaseResponse<Integer> save(@PathVariable MenuType menuType, BoardParameter parameter){//보통 post, put 사용, 실제로는 get 사용 지양
+    //BaseResponse<Integer>
+    public String save(@PathVariable MenuType menuType, BoardParameter parameter, Model model){//보통 post, put 사용, 실제로는 get 사용 지양
         //제목, 내용 필수체크
 
         if(StringUtils.isEmpty(parameter.getTitle())){
@@ -142,7 +143,15 @@ public class BoardController {
         }
         parameter.setBoardType(menuType.boardType());
         boardService.save(parameter);
-        return new BaseResponse<Integer>(parameter.getBoardSeq());
+        //return new BaseResponse<Integer>(parameter.getBoardSeq());
+
+        Board board = boardService.get(parameter.getBoardSeq());
+        if(board==null){
+            throw new BaseException(BaseResponseCode.DATA_IS_NULL, new String[] {"게시물"});
+        }
+        model.addAttribute("board", board);
+        model.addAttribute("menuType", menuType);
+        return "/board/detail";
        // return "/board/"+parameter.ge
     }
 

@@ -50,7 +50,7 @@ pageEncoding="UTF-8"%>
                     console.log(data);
                 }
             });
-            //return false;
+            return false;
         });
     });
     </script>

@@ -10,7 +10,7 @@
     </appender>
 
     <logger name="org.springframework.boot">
-        <level value="ERROR"/>
+        <level value="INFO"/>
     </logger>
     <logger name="org.springframework.boot.devtools.restart">
         <level value="ERROR"/>
@@ -46,7 +46,7 @@
     <logger name="jdbc.sqlonly" level="ERROR"/>
     <!--resultset을 제외한 모든 jdbc호출정보를 로그로 남긴다. 특히 JDBC문제를 추적할떄 -->
     <logger name="jdbc.audit" level="OFF"/>
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
