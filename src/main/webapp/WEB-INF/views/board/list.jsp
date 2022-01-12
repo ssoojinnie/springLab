@@ -49,6 +49,24 @@ pageEncoding="UTF-8"%>
                 </c:if>
               </tbody>
             </table>
+
+
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+
             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
                 <a href="/${menuType}/form" class="btn btn-primary" type="button"><spring:message code="button.form"/></a>
             </div>
