@@ -32,6 +32,12 @@ public class BoardService {
     }
 
     /*
+    조회 건수
+     */
+    public int getCount(PageRequestParameter parameter){
+        return repository.getCount(parameter);
+    }
+    /*
      * 상세정보 리턴
      * @author PSJ
      */

@@ -34,9 +34,9 @@ public class MySQLPageRequestHandleMethodArgumentResolver implements HandlerMeth
         //실제로 바인딩할 객체를 리턴
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
         //현재페이지
-        int page = NumberUtils.toInt(request.getParameter(DEFAULT_PARAMETER_PAGE));
+        int page = NumberUtils.toInt(request.getParameter(DEFAULT_PARAMETER_PAGE), 1);
         //리스트 갯수
-        int offset = NumberUtils.toInt(request.getParameter(DEFAULT_PARAMETER_SIZE));
+        int offset = NumberUtils.toInt(request.getParameter(DEFAULT_PARAMETER_SIZE), DEFAULT_SIZE);
         //시작지점
         int limit = (offset * page) - offset;
 
