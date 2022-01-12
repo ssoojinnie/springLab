@@ -19,4 +19,5 @@ public interface BoardRepository {
     void update(BoardParameter board);
 
     void saveList(Map<String, Object> paramMap);
+    int getCount(PageRequestParameter parameter);
 }

@@ -61,9 +61,13 @@ public class BoardController {
         //parameter.setBoardTypes(menuType.getArray());
         parameter.setBoardType(menuType.boardType());
         logger.info("parameter : {}", parameter);
+        int totalCount = boardService.getCount(pageRequestParameter);
         List<Board> boardList = boardService.getList(pageRequestParameter);
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuType", menuType);
+        model.addAttribute("parameter", parameter);
+        model.addAttribute("pageRequest", pageRequest);
+        model.addAttribute("count", totalCount);
         //return new BaseResponse<List<Board>>(boardService.getList(pageRequestParameter));
         return "/board/list";
     }

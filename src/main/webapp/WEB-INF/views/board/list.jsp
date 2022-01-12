@@ -15,13 +15,17 @@ pageEncoding="UTF-8"%>
 <body>
     <div class="container">
         <form id="form" method="get" action="/${menuType}">
-            <div class="row mb-3">
+        <input type="hidden" name="page" value="${pageRequest.page == null ? '1' : pageRequest.page}" />
+            <div class="row mb-3 mt-2">
                 <label for="keyword" class="col-sm-2 col-form-label"><spring:message code="search.keyword"/></label>
-                <div class="col-sm-10">
+                <div class="col-sm-8">
                     <input type="text" class="form-control" name="keyword" value="${parameter.keyword}" id="keyword" placeholder="<spring:message code="placeholder.keyword"/>"/>
                 </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary"><spring:message code="button.search"/></button>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary"><spring:message code="button.search"/></button>
+
         </form>
 
             <table class="table caption-top">
@@ -49,6 +53,23 @@ pageEncoding="UTF-8"%>
                 </c:if>
               </tbody>
             </table>
+
+            <div>
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item ${pageRequest.page == 1 ? 'disabled' : '' }">
+                    <span class="page-link">Previous</span>
+                </li>
+                <c:forEach var="i" begin="1" end="10" step="1">
+                    <li class="page-item ${pageRequest.page == i ? 'disabled' : '' }"><a class="page-link" href="?page=${i}">${i}</a></li>
+                </c:forEach>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+            </div>
+
             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
                 <a href="/${menuType}/form" class="btn btn-primary" type="button"><spring:message code="button.form"/></a>
             </div>
