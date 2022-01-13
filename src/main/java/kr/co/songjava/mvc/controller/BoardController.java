@@ -67,7 +67,7 @@ public class BoardController {
         model.addAttribute("menuType", menuType);
         model.addAttribute("parameter", parameter);
         model.addAttribute("pageRequest", pageRequest);
-        model.addAttribute("count", totalCount);
+        model.addAttribute("totalCount", totalCount);
         //return new BaseResponse<List<Board>>(boardService.getList(pageRequestParameter));
         return "/board/list";
     }

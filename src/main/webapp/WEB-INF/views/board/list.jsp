@@ -27,7 +27,9 @@ pageEncoding="UTF-8"%>
             </div>
 
         </form>
-
+        <div>
+            <label for="text" name="totalCount" id="totalCount"/>총 ${totalCount} 건</label>
+        </div>
             <table class="table caption-top">
               <thead>
                 <tr>
