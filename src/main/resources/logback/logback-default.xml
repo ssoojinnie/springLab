@@ -40,10 +40,10 @@
         <level value="ERROR"/>
     </logger>
     <!--Query logger-->
-    <logger name="jdbc" level="ERROR"/>
-    <logger name="jdbc.connection" level="ERROR"/>
+    <logger name="jdbc" level="INFO"/>
+    <logger name="jdbc.connection" level="INFO"/>
     <!--sql문만을 로그로 남기고 preparedstatement일 경우 관련 argument 값으로 대체된 sql문이 보여진다-->
-    <logger name="jdbc.sqlonly" level="ERROR"/>
+    <logger name="jdbc.sqlonly" level="INFO"/>
     <!--resultset을 제외한 모든 jdbc호출정보를 로그로 남긴다. 특히 JDBC문제를 추적할떄 -->
     <logger name="jdbc.audit" level="OFF"/>
     <root level="INFO">
