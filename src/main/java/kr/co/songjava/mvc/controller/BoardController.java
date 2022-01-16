@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import java.util.*;
@@ -125,8 +126,8 @@ public class BoardController {
      * 등록/수정 처리
      * @author PSJ
      */
-    //@PutMapping("/save")
-    @PostMapping("/{menuType}/save")
+    @PutMapping("/{menuType}/save") //응답에 본문 X
+    //@PostMapping("/{menuType}/save") //응답에 본문 O
     //@ResponseBody
     @RequestConfig(loginCheck = false)//로그인체크하려면 true
     @ApiOperation(value="등록/수정 처리", notes="신규 게시물 저장 및 기존 게시물 업데이트 가능")
@@ -136,9 +137,10 @@ public class BoardController {
             @ApiImplicitParam(name="contents", value = "내용", example = "spring 강좌")
     })
     //BaseResponse<Integer>
-    public String save(@PathVariable MenuType menuType, BoardParameter parameter, Model model){//보통 post, put 사용, 실제로는 get 사용 지양
-        //제목, 내용 필수체크
+    public String save(@PathVariable MenuType menuType, BoardParameter parameter, Model model, @RequestParam(required = false) MultipartFile uploadFile){//보통 post, put 사용, 실제로는 get 사용 지양
+        logger.info("uploadFile :{}", uploadFile);
 
+        //제목, 내용 필수체크
         if(StringUtils.isEmpty(parameter.getTitle())){
             throw new BaseException(BaseResponseCode.VALIDATE_REQUIRED, new String[]{"Title", "제목"});
         }
