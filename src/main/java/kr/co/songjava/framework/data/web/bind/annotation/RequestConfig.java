@@ -8,4 +8,6 @@ import java.lang.annotation.*;
 public @interface RequestConfig {
 
     boolean loginCheck() default false;
+
+    boolean menu() default false;
 }

@@ -13,6 +13,24 @@ pageEncoding="UTF-8"%>
     <style type="text/css">
         .active {color: red !important; }
     </style>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/resources/js/lib/ajax.js"></script>
+    <script src="/resources/js/lib/modal.js"></script>
+    <script>
+        $(function(){
+
+            //모달 오픈
+            $('.btn-modal-open').bind('click', function(){
+                var modal = new Modal();
+                modal.open({
+                    url: $(this).data().url
+                });
+            });
+        });
+    </script>
+
     <sitemesh:write property="head"/>
 </head>
 <body>
@@ -45,7 +63,16 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </nav>
-    <sitemesh:write property="body"/>
-    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-</body>
+
+    <div class="container">
+        <sitemesh:write property="body"/>
+    <div>
+    <footer class="bd-footer p-3 p-md-5 mt-5 bg-light text-center text-sm-start">
+    <div class="container">
+        <ul class="bd-footer-links ps-0 mb-3">
+            <li class="d-inline-block"><a href="javascript:;" data-url="/terms" class="btn-modal-open"><spring:message code="modal.terms"/></a></li>
+        </ul>
+    </div>
+    </footer>
+  </body>
 </html>
