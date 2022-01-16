@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor //초기화되지 않은 final 필드, @nonNull 필드에 대해 생성자 생성, Autowired 없이 의존성 주입
-public class MemberService {
+public class JPAMemberService {
 
     private final MemberRepository memberRepository;
 
