@@ -91,7 +91,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry){
-        registry.addMapping("/**").allowedOrigins("http://localhost:8080");
+        registry.addMapping("/**").allowedOrigins("http://localhost:8080").allowedMethods("*");//.allowedMethods("*") : put 메소드 활용하려면 모두허용해야 CORS 에러 안뜸 
     }
 
 
