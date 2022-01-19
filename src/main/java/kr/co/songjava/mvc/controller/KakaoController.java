@@ -2,22 +2,36 @@ package kr.co.songjava.mvc.controller;
 
 import kr.co.songjava.configuration.properties.KakaoProperties;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/kakao/*")
+@RequestMapping("/kakao/")
 @RequiredArgsConstructor
 public class KakaoController {
 
     //@RequiredArgsConstructor + final 선언하면 autowired 필요 없이 의존성 주입
-    private final KakaoProperties properties;
+    private final KakaoProperties kakaoProperties;
 
     @GetMapping("/test")
     @ResponseBody
-    public KakaoProperties test(){
-        return properties;
+    public KakaoProperties test() {
+        return kakaoProperties;
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam String query) {
+        Mono<String> mono = WebClient.builder().baseUrl("https://dapi.kakao.com")
+                .build().get()
+                .uri(builder -> builder.path("/v2/local/search/address.json")
+                        .queryParam("query", query)
+                        .build()
+                )
+                .header("Authorization", "KakaoAK " + kakaoProperties.getRestapi())
+                .exchangeToMono(response -> {
+                    return response.bodyToMono(String.class);
+                });
+        return mono.block();
     }
 }
