@@ -12,17 +12,13 @@ import reactor.core.publisher.Mono;
 public class KakaoController {
 
     //@RequiredArgsConstructor + final 선언하면 autowired 필요 없이 의존성 주입
-    private final KakaoProperties kakaoProperties;
+    //private final KakaoProperties kakaoProperties;
 
-    @GetMapping("/test")
-    @ResponseBody
-    public KakaoProperties test() {
-        return kakaoProperties;
-    }
+    private final WebClient kakaoWebClient;
 
     @GetMapping("/search")
     public String search(@RequestParam String query) {
-        Mono<String> mono = WebClient.builder().baseUrl("https://dapi.kakao.com")
+        /*Mono<String> mono = WebClient.builder().baseUrl("https://dapi.kakao.com")
                 .build().get()
                 .uri(builder -> builder.path("/v2/local/search/address.json") ///v2/local/search/address.{FORMAT} -> FORMAT : json 또는 xml
                         .queryParam("query", query)
@@ -31,7 +27,41 @@ public class KakaoController {
                 .header("Authorization", "KakaoAK " + kakaoProperties.getRestapi())
                 .exchangeToMono(response -> {
                     return response.bodyToMono(String.class);
+                });*/
+        Mono<String> mono = kakaoWebClient.get()
+                .uri(builder -> builder.path("/v2/local/search/address.json") ///v2/local/search/address.{FORMAT} -> FORMAT : json 또는 xml
+                        .queryParam("query", query)
+                        .build()
+                )
+                .exchangeToMono(response -> {
+                    return response.bodyToMono(String.class);
                 });
         return mono.block();
+    }
+
+    @GetMapping("/coord2regioncode")
+    public String coord2regioncode(@RequestParam String x, @RequestParam String y){
+        Mono<String> mono = kakaoWebClient.get()
+                .uri(builder -> builder.path("/v2/local/geo/coord2regioncode.json") ///v2/local/search/address.{FORMAT} -> FORMAT : json 또는 xml
+                        .queryParam("x", x)
+                        .queryParam("y", y)
+                        .build()
+                )
+                .exchangeToMono(response -> {
+                    return response.bodyToMono(String.class);
+                });
+        return mono.block();
+        /*Mono<String> mono = WebClient.builder().baseUrl("https://dapi.kakao.com")
+                .build().get()
+                .uri(builder -> builder.path("/v2/local/search/address.json") ///v2/local/search/address.{FORMAT} -> FORMAT : json 또는 xml
+                        .queryParam("x", x)
+                        .queryParam("y", y)
+                        .build()
+                )
+                .header("Authorization", "KakaoAK " + kakaoProperties.getRestapi())
+                .exchangeToMono(response -> {
+                    return response.bodyToMono(String.class);
+                });*/
+
     }
 }
