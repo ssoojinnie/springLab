@@ -24,7 +24,7 @@ public class KakaoController {
     public String search(@RequestParam String query) {
         Mono<String> mono = WebClient.builder().baseUrl("https://dapi.kakao.com")
                 .build().get()
-                .uri(builder -> builder.path("/v2/local/search/address.json")
+                .uri(builder -> builder.path("/v2/local/search/address.json") ///v2/local/search/address.{FORMAT} -> FORMAT : json 또는 xml
                         .queryParam("query", query)
                         .build()
                 )
