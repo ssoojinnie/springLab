@@ -47,9 +47,9 @@ public class BoardController {
     @GetMapping("{menuType}")
     //@GetMapping("/list/{menuType}")
     //@GetMapping("/list")
-    @ResponseBody
+    //@ResponseBody
     //@ApiOperation(value="목록 조회", notes = "목록 정보 조회 가능")
-    public BaseResponse<List<Board>> list(@PathVariable MenuType menuType, BoardSearchParameter parameter, MySQLPageRequest pageRequest, Model model)
+    public String /*BaseResponse<List<Board>>*/ list(@PathVariable MenuType menuType, BoardSearchParameter parameter, MySQLPageRequest pageRequest, Model model)
             //@ApiParam BoardSearchParameter parameter,
             //@ApiParam MySQLPageRequest pageRequest)
     {//페이지 요청 과 검색파라미터 분리
@@ -69,8 +69,8 @@ public class BoardController {
         model.addAttribute("parameter", parameter);
         model.addAttribute("pageRequest", pageRequest);
         model.addAttribute("totalCount", totalCount);
-        return new BaseResponse<List<Board>>(boardService.getList(pageRequestParameter));
-        //return "/board/list";
+        //return new BaseResponse<List<Board>>(boardService.getList(pageRequestParameter));
+        return "/board/list";
     }
 
     /*
