@@ -17,7 +17,9 @@ pipeline {
           expression { return params.BUILD_DOCKER_IMAGE } 
         }
         steps {
-            echo "test sh 'docker build -t test:1 .'"
+            dir('.'){
+                sh './gradlew clean build'
+            }
         }
         post {
             always {
