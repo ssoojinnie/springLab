@@ -17,9 +17,7 @@ pipeline {
           expression { return params.BUILD_DOCKER_IMAGE } 
         }
         steps {
-            sh 'make'
-            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-
+            echo "test sh 'docker build -t test:1 .'"
         }
         post {
             always {
