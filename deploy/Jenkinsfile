@@ -13,7 +13,9 @@ pipeline {
 
   stages {
     stage('============ Build Docker Image ============') {
-        when { expression { return params.BUILD_DOCKER_IMAGE } }
+        when { 
+          expression { return params.BUILD_DOCKER_IMAGE } 
+        }
         steps {
            echo "Stage Build"
         }
@@ -35,6 +37,7 @@ pipeline {
             echo "Stage Test"
         }
     }
+  }
   post {
     cleanup{
         echo "Post cleanUp"
