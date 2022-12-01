@@ -17,7 +17,7 @@ pipeline {
           expression { return params.BUILD_DOCKER_IMAGE } 
         }
         steps {
-            dir("${env.WORKSPACE}") { //java_home/workspace/빌드번호/...
+            dir("${env.WORKSPACE}") { //java_home/workspace/num/...
                 sh 'docker build -t test:1 .'
             }
         }
