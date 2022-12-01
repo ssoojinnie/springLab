@@ -17,9 +17,9 @@ pipeline {
           expression { return params.BUILD_DOCKER_IMAGE } 
         }
         steps {
-            dir("${env.WORKSPACE}") { //java_home/workspace/num/...
-                sh 'docker build -t test:1 .'
-            }
+            sh 'make'
+            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+
         }
         post {
             always {
